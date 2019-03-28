@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/liangkunkun/Documents/flutter-project/flutter_adb/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/Users/liangkunkun/Documents/flutter-project/Flutter_Movie/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
                 {
-                    "source": "/Users/liangkunkun/Documents/flutter-project/flutter_adb/android/app/src/main/res/values/styles.xml",
+                    "source": "/Users/liangkunkun/Documents/flutter-project/Flutter_Movie/android/app/src/main/res/values/styles.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
