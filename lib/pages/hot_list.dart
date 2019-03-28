@@ -35,19 +35,51 @@ class HotPage extends State<HotList> {
 
   ListMovie listMovie;
   List<MovieInfo> movies = [];
+  String appTitle = "豆瓣电影";
+  String appFirstMovie =
+      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553748875788&di=f0d423c08a65bd976994fc1880483b14&imgtype=0&src=http%3A%2F%2Fwww.kedo.gov.cn%2Fupload%2Fresources%2Fimage%2F2018%2F03%2F25%2F182034.jpg";
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Center(
-      child: _isShowProgress(),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(appTitle),
+        centerTitle: false,
+        //设置标题居中
+        elevation: 10,
+        //设置标题栏下面阴影的高度
+        leading: Builder(builder: (BuildContext context) {
+          return IconButton(
+            icon: Icon(Icons.flag),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          );
+        }),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {},
+          )
+        ],
+      ),
+      body: Center(
+        child: _isShowProgress(),
+      ),
+      resizeToAvoidBottomPadding: false,
+      drawer: new Drawer(
+        //侧边栏
+        child: new Image.network(
+          appFirstMovie,
+          fit: BoxFit.fill,
+        ),
+      ),
     );
   }
 
   Widget _isShowProgress() {
     if (movies.length > 0) {
       return RefreshIndicator(
-        //下拉刷新
+          //下拉刷新
           onRefresh: () => loadData(0),
           child: ListView.builder(
               itemCount: movies.length + addPageIndex,
@@ -73,9 +105,11 @@ class HotPage extends State<HotList> {
         if (response.statusCode == 200) {
           setState(() {
             listMovie = ListMovie.fromJson(json.decode(response.body));
+            appTitle = listMovie.title;
             print("listMovie: ${listMovie.title}");
             if (page == 0) {
               movies = listMovie.subjects;
+              appFirstMovie = movies[0].images.medium;
             } else {
               movies.addAll(listMovie.subjects);
             }
@@ -135,10 +169,10 @@ class HotPage extends State<HotList> {
                             width: 5,
                           ),
                           Flexible(
-                              child: Text(
-                                movie.title,
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                            child: Text(
+                              movie.title,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                           SizedBox(
                             width: 5,
@@ -158,8 +192,7 @@ class HotPage extends State<HotList> {
                         height: 10,
                       ),
                       Text(
-                        "${getPersonStr(movie.directors)} / ${getStr(
-                            movie.genres)}",
+                        "${getPersonStr(movie.directors)} / ${getStr(movie.genres)}",
                         softWrap: true,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
@@ -262,5 +295,12 @@ class HotPage extends State<HotList> {
       style: TextStyle(color: Colors.grey, fontSize: 13.0),
     ));
     return widgets;
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _scrollController.dispose();
   }
 }

@@ -14,7 +14,8 @@ class HomePage extends StatefulWidget {
   }
 }
 
-class _NavigationTab extends State<HomePage> {
+class _NavigationTab extends State<HomePage>
+    with AutomaticKeepAliveClientMixin {
   var _pages;
   var _currentItem = 0;
 
@@ -31,34 +32,10 @@ class _NavigationTab extends State<HomePage> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        centerTitle: true,
-        //设置标题居中
-        elevation: 10,
-        //设置标题栏下面阴影的高度
-        leading: Builder(builder: (BuildContext context) {
-          return IconButton(
-            icon: Icon(Icons.flag),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          );
-        }),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {},
-          )
-        ],
+      body: IndexedStack(
+        children: <Widget>[_pages[0]["fun"], _pages[1]["fun"]],
+        index: _currentItem,
       ),
-      resizeToAvoidBottomPadding: false,
-      drawer: new Drawer(
-        //侧边栏
-        child: new Image.network(
-          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553748875788&di=f0d423c08a65bd976994fc1880483b14&imgtype=0&src=http%3A%2F%2Fwww.kedo.gov.cn%2Fupload%2Fresources%2Fimage%2F2018%2F03%2F25%2F182034.jpg",
-          fit: BoxFit.fill,
-        ),
-      ),
-      body: _pages[_currentItem]["fun"],
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -71,11 +48,16 @@ class _NavigationTab extends State<HomePage> {
         fixedColor: Colors.blue,
         currentIndex: _currentItem,
         onTap: (index) {
-          setState(() {
-            _currentItem = index;
-          });
+          if (_currentItem != index) {
+            setState(() {
+              _currentItem = index;
+            });
+          }
         },
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
