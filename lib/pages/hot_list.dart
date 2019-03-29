@@ -36,8 +36,7 @@ class HotPage extends State<HotList> {
   ListMovie listMovie;
   List<MovieInfo> movies = [];
   String appTitle = "豆瓣电影";
-  String appFirstMovie =
-      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553748875788&di=f0d423c08a65bd976994fc1880483b14&imgtype=0&src=http%3A%2F%2Fwww.kedo.gov.cn%2Fupload%2Fresources%2Fimage%2F2018%2F03%2F25%2F182034.jpg";
+  String appFirstMovie = "";
 
   @override
   Widget build(BuildContext context) {
@@ -109,10 +108,11 @@ class HotPage extends State<HotList> {
             print("listMovie: ${listMovie.title}");
             if (page == 0) {
               movies = listMovie.subjects;
-              appFirstMovie = movies[0].images.medium;
+              appFirstMovie = movies[0].images.large;
             } else {
               movies.addAll(listMovie.subjects);
             }
+
           });
         } else {
           print("请求失败: ${response.statusCode}");

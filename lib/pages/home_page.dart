@@ -44,7 +44,7 @@ class _NavigationTab extends State<HomePage>
               icon: Icon(Icons.border_top), title: Text(_pages[1]["name"])),
         ],
 //        type: BottomNavigationBarType.fixed,
-        iconSize: 23,
+        iconSize: 20,
         fixedColor: Colors.blue,
         currentIndex: _currentItem,
         onTap: (index) {
