@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/model/list_movie.dart';
 import 'package:flutter_movie/model/movie.dart';
+import 'package:flutter_movie/model/person.dart';
 import 'package:http/http.dart' as http;
 
 class TopList extends StatefulWidget {
@@ -58,9 +59,12 @@ class TopPage extends State<TopList> {
             crossAxisCount: 2,
             padding: const EdgeInsets.all(8.0),
             //宽高比
-            childAspectRatio: 1 / 1.3,
+            childAspectRatio: 1 / 1.2,
             children: List.generate(10, (index) {
-              return _listItemBuild(index);
+              return Card(
+                
+                child: _listItemBuild(index),
+              );
             })));
 //    } else {
 //      return CircularProgressIndicator();
@@ -103,41 +107,61 @@ class TopPage extends State<TopList> {
   }
 
   Widget _listItemBuild(int position) {
+    MovieInfo movie = movies[position];
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Expanded(
-          child: Text("name"),
+          child: Text(
+            movie.title,
+            style: TextStyle(fontSize: 15, color: Colors.black87),
+            softWrap: false,
+          ),
         ),
         SizedBox(
           height: 5.0,
         ),
-        Card(
-          child: Image.network(
-            "http://img1.doubanio.com/view/photo/s_ratio_poster/public/p457760035.webp",
-            fit: BoxFit.fill,
-            alignment: Alignment.center,
-            height: 150,
-          ),
+        Image.network(
+          movie.images.small,
+          fit: BoxFit.fitWidth,
+          alignment: Alignment.center,
+          height: 150,
         ),
         SizedBox(
           height: 5.0,
         ),
         Expanded(
           child: Text(
-            "演员演员演员演员演员演员演员演员演员演员演员演员演员演员演员演员演员演员演员演员演员演员演员演员演员演员演员",
+            getStr(movie.genres)+ "   ${movie.rating.average}",
             overflow: TextOverflow.ellipsis,
-          ),
-        ),
-        Expanded(
-          child: Text(
-            "描述",
-            overflow: TextOverflow.ellipsis,
+            style: TextStyle(color: Colors.grey, fontSize: 12),
           ),
         ),
       ],
     );
+  }
+
+  String getPersonStr(List<Person> data) {
+    var arr = "";
+    for (Person person in data) {
+      if (arr != "") {
+        arr += "  ";
+      }
+      arr += person.name;
+    }
+    return arr;
+  }
+
+  String getStr(List<String> data) {
+    var arr = "";
+    for (String s in data) {
+      if (arr != "") {
+        arr += " • ";
+      }
+      arr += s;
+    }
+    return arr;
   }
 }
