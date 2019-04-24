@@ -36,6 +36,8 @@ class MovieInfo {
 
   final ImageThree images;
 
+  final String summary; //描述
+
   @JsonKey(nullable: false)
   final String alt; // 豆瓣详情
 
@@ -57,6 +59,7 @@ class MovieInfo {
       this.directors,
       this.images,
       this.alt,
+      this.summary,
       this.id);
 
   factory MovieInfo.fromJson(Map<String, dynamic> json) => _$MovieInfoFromJson(json);

@@ -1,9 +1,10 @@
 import 'dart:convert';
-
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/model/list_movie.dart';
 import 'package:flutter_movie/model/movie.dart';
 import 'package:flutter_movie/model/person.dart';
+import 'package:flutter_movie/pages/movie_detail.dart';
 import 'package:http/http.dart' as http;
 
 class TopList extends StatefulWidget {
@@ -19,8 +20,6 @@ class TopPage extends State<TopList> {
   List<MovieInfo> movies = [];
   String appTitle = "豆瓣电影";
   String appFirstMovie = "";
-
-  ScrollController _scrollController = ScrollController();
 
   int currentPage = 0;
   int addPageIndex = 1;
@@ -59,11 +58,17 @@ class TopPage extends State<TopList> {
             crossAxisCount: 2,
             padding: const EdgeInsets.all(8.0),
             //宽高比
-            childAspectRatio: 1 / 1.2,
-            children: List.generate(10, (index) {
-              return Card(
-                
-                child: _listItemBuild(index),
+            childAspectRatio: 1 / 1.3,
+            children: List.generate(movies.length, (index) {
+              MovieInfo movie = movies[index];
+              return GestureDetector(
+                child: Card(
+                  child: _listItemBuild(movie),
+                ),
+                onTap: () {
+                  Navigator.of(context).push(new MaterialPageRoute(
+                      builder: (context) => new MovieDetail(movie.id)));
+                },
               );
             })));
 //    } else {
@@ -80,7 +85,7 @@ class TopPage extends State<TopList> {
         isLoading = true;
         addPageIndex = 1;
         String url =
-            "http://api.douban.com/v2/movie/top250?apikey=0b2bdeda43b5688921839c8ecb20399b&start=$start&count=10";
+            "http://api.douban.com/v2/movie/top250?apikey=0b2bdeda43b5688921839c8ecb20399b&start=$start&count=30";
         http.Response response = await http.get(url);
         if (response.statusCode == 200) {
           setState(() {
@@ -106,39 +111,68 @@ class TopPage extends State<TopList> {
     }
   }
 
-  Widget _listItemBuild(int position) {
-    MovieInfo movie = movies[position];
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
+  Widget _listItemBuild(MovieInfo movie) {
+    return Stack(
+      alignment: Alignment.center,
       children: <Widget>[
-        Expanded(
-          child: Text(
-            movie.title,
-            style: TextStyle(fontSize: 15, color: Colors.black87),
-            softWrap: false,
-          ),
-        ),
-        SizedBox(
-          height: 5.0,
-        ),
         Image.network(
           movie.images.small,
-          fit: BoxFit.fitWidth,
-          alignment: Alignment.center,
+          fit: BoxFit.fill,
           height: 150,
+          alignment: Alignment.center,
         ),
-        SizedBox(
-          height: 5.0,
-        ),
-        Expanded(
-          child: Text(
-            getStr(movie.genres)+ "   ${movie.rating.average}",
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(color: Colors.grey, fontSize: 12),
+        BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+          child: Container(
+            color: Colors.white.withOpacity(0.2),
           ),
         ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            SizedBox(
+              height: 10,
+            ),
+            Expanded(
+              child: Text(
+                movie.title,
+                style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    decorationStyle: TextDecorationStyle.dotted),
+                softWrap: false,
+              ),
+            ),
+            SizedBox(
+              height: 5.0,
+            ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(6.0),
+              child: Image.network(
+                movie.images.small,
+                fit: BoxFit.fitWidth,
+                alignment: Alignment.center,
+                height: 150,
+              ),
+            ),
+            SizedBox(
+              height: 5.0,
+            ),
+            Expanded(
+              child: Text(
+                getStr(movie.genres) + "   ${movie.rating.average}",
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        )
       ],
     );
   }

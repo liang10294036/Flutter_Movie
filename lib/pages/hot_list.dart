@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movie/model/movie.dart';
 import 'package:flutter_movie/model/list_movie.dart';
+import 'package:flutter_movie/model/movie.dart';
 import 'package:flutter_movie/model/person.dart';
 import 'package:flutter_movie/model/rating.dart';
+import 'package:flutter_movie/pages/movie_detail.dart';
 import 'package:http/http.dart' as http;
 
 import 'dart:convert';
@@ -112,7 +113,6 @@ class HotPage extends State<HotList> {
             } else {
               movies.addAll(listMovie.subjects);
             }
-
           });
         } else {
           print("请求失败: ${response.statusCode}");
@@ -219,7 +219,8 @@ class HotPage extends State<HotList> {
           ],
         ),
         onTap: () {
-          print("${movie.title}");
+          Navigator.of(context).push(
+              new MaterialPageRoute(builder: (context) => new MovieDetail(movie.id)));
         },
       );
     } else {

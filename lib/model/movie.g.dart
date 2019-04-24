@@ -33,6 +33,7 @@ MovieInfo _$MovieInfoFromJson(Map<String, dynamic> json) {
           ? null
           : ImageThree.fromJson(json['images'] as Map<String, dynamic>),
       json['alt'] as String,
+      json['summary'] as String,
       json['id'] as String);
 }
 
@@ -52,5 +53,6 @@ Map<String, dynamic> _$MovieInfoToJson(MovieInfo instance) => <String, dynamic>{
       'directors': instance.directors,
       'images': instance.images,
       'alt': instance.alt,
+      'summary': instance.summary,
       'id': instance.id
     };
