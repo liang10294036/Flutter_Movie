@@ -1,2 +1,11 @@
+*.iml
+gradlew
+local.properties
+.idea
+**/bin
+**/.svn
+**/build
+gradle/wrapper
 .gradle
-build
+result_files
+.DS_Store
