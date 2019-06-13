@@ -55,7 +55,7 @@ class DetailState extends State<MovieDetail> {
   }
 
   loadData() async {
-    String url = "https://api.douban.com/v2/movie/subject/${widget.id}";
+    String url = "https://api.douban.com/v2/movie/subject/${widget.id}?apikey=0b2bdeda43b5688921839c8ecb20399b";
     http.Response response = await http.get(url);
     if (response.statusCode == 200) {
       setState(() {

@@ -1,4 +1,4 @@
-#Wed Apr 24 18:51:54 CST 2019
+#Thu Jun 13 19:55:04 CST 2019
 base.0=/Users/liangkunkun/Documents/flutter-project/Flutter_Movie/build/app/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex
