@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cf5cfa12-c735-421a-80e3-d75b6b99ad18" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/device-2019-07-02-162222.png" beforeDir="false" afterPath="$PROJECT_DIR$/device-2019-07-02-162222.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/device-2019-07-02-162353.png" beforeDir="false" afterPath="$PROJECT_DIR$/device-2019-07-02-162353.png" afterDir="false" />
-    </list>
+    <list default="true" id="cf5cfa12-c735-421a-80e3-d75b6b99ad18" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -77,20 +72,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="13" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="13" />
+            <state relative-caret-position="285">
+              <caret line="19" column="9" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/pages/movie_detail.dart">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="370">
-              <caret line="57" column="43" selection-start-line="57" selection-start-column="41" selection-end-line="57" selection-end-column="43" />
+              <caret line="57" column="110" selection-start-line="57" selection-start-column="71" selection-end-line="57" selection-end-column="110" />
             </state>
           </provider>
         </entry>
@@ -239,7 +234,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.38155922" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.38155922" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Build Variants" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
@@ -250,7 +245,7 @@
       <window_info anchor="bottom" id="Run" order="0" weight="0.32885087" />
       <window_info anchor="bottom" id="TODO" order="1" weight="0.32885087" />
       <window_info anchor="bottom" id="Debug" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="3" visible="true" weight="0.32885087" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="3" visible="true" weight="0.32885087" />
       <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Flutter Performance" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.32885087" />
@@ -304,13 +299,6 @@
     <entry file="file://$PROJECT_DIR$/device-2019-07-02-162222.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/android/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -358,7 +346,14 @@
     <entry file="file://$PROJECT_DIR$/lib/pages/movie_detail.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="370">
-          <caret line="57" column="43" selection-start-line="57" selection-start-column="41" selection-end-line="57" selection-end-column="43" />
+          <caret line="57" column="110" selection-start-line="57" selection-start-column="71" selection-end-line="57" selection-end-column="110" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="9" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="9" />
         </state>
       </provider>
     </entry>
